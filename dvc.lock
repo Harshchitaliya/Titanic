@@ -1,0 +1,19 @@
+schema: '2.0'
+stages:
+  build_features:
+    cmd: python .\src\features\build_features.py .\data\raw\train.csv
+    deps:
+    - path: .\data\raw\train.csv
+      hash: md5
+      md5: 2309cc5f04782ed9bb6016d9f4e381cf
+      size: 61194
+    - path: .\src\features\build_features.py
+      hash: md5
+      md5: 1b4011d3fbccc5fb4e9522a5a0f9ef4d
+      size: 2797
+    outs:
+    - path: .\data\build_data\
+      hash: md5
+      md5: 947037ad2332bf89344587d8e94a31e9.dir
+      size: 74915
+      nfiles: 1
