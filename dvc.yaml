@@ -6,3 +6,16 @@ stages:
     - .\src\features\build_features.py
     outs:
     - .\data\build_data\
+
+  make_dataset:
+    cmd: python .\src\data\make_dataset.py .\data\build_data\processed.csv
+    deps:
+    - .\data\build_data\processed.csv
+    - .\src\data\make_dataset.py
+    params:
+    - make_dataset.test_split
+    - make_dataset.seed 
+
+    outs:
+    - .\data\processed\
+

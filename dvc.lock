@@ -17,3 +17,24 @@ stages:
       md5: 947037ad2332bf89344587d8e94a31e9.dir
       size: 74915
       nfiles: 1
+  make_dataset:
+    cmd: python .\src\data\make_dataset.py .\data\build_data\processed.csv
+    deps:
+    - path: .\data\build_data\processed.csv
+      hash: md5
+      md5: 4d63c3b8e28669fe8b207d45dac78d62
+      size: 74915
+    - path: .\src\data\make_dataset.py
+      hash: md5
+      md5: 0bea3970c7e15988c0245f4f78b25f0e
+      size: 1513
+    params:
+      params.yaml:
+        make_dataset.seed: 2022
+        make_dataset.test_split: 0.3
+    outs:
+    - path: .\data\processed\
+      hash: md5
+      md5: 9479e591488e43c26d4337c5b45ef080.dir
+      size: 75681
+      nfiles: 4
