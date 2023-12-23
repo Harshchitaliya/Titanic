@@ -19,5 +19,15 @@ stages:
     outs:
     - .\data\processed\
 
+  train_model:
+    cmd: python .\src\models\train_model.py .\data\processed\
+    deps:
+    - .\data\processed\
+    - .\src\models\train_model.py
+    outs:
+    - .\models\
+   
+
+
     
 
