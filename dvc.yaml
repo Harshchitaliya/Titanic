@@ -1,0 +1,8 @@
+stages:
+  build_features:
+    cmd: python .\src\features\build_features.py .\data\raw\train.csv
+    deps:
+    - .\data\raw\train.csv
+    - .\src\features\build_features.py
+    outs:
+    - .\data\build_data\
