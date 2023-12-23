@@ -26,6 +26,13 @@ stages:
     - .\src\models\train_model.py
     outs:
     - .\models\
+
+  visualize:
+    cmd: python .\src\visualization\visualize.py .\models\model.joblib .\data\processed\
+    deps:
+    - .\data\processed\
+    - .\models\model.joblib
+    - .\src\visualization\visualize.py 
    
 
 
