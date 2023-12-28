@@ -13,11 +13,10 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3 
+    - uses: actions/setup-python@v4
 
-    - name: Install DVC
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y dvc
+    - name: Install dependencies
+      run: pip install -r requirements.txt  
 
     - name: Configure DVC remote storage
       run: |
@@ -26,8 +25,7 @@ jobs:
     - name: Pull DVC data
       run: dvc pull
 
-    - name: Install dependencies
-      run: pip install -r requirements.txt
+
 
     - name: Run your DVC pipeline
       run: dvc repro
