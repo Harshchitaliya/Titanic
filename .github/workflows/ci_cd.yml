@@ -22,7 +22,7 @@ jobs:
       run: |
         dvc remote add -d myremote gdrive://1QuY-u0O6XSUt3OB4oeRuQzXLdI9EOJaX
 
-    env:
+    - env:
       GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}      
 
     - name: Pull DVC data
