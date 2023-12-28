@@ -1,4 +1,3 @@
-
 name: DVC Workflow
 
 on:
@@ -22,17 +21,12 @@ jobs:
       run: |
         dvc remote add -d myremote gdrive://1QuY-u0O6XSUt3OB4oeRuQzXLdI9EOJaX
 
-    - env:
-      GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}      
+    - name: Set Environment Variables
+      run: |
+        echo "GDRIVE_CREDENTIALS_DATA=${{ secrets.GDRIVE_CREDENTIALS_DATA }}" >> $GITHUB_ENV
 
     - name: Pull DVC data
       run: dvc pull
-
     
     - name: Run your DVC pipeline
       run: dvc repro
-
-
-
-
-        
