@@ -17,26 +17,14 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Pull DVC-Tracked Data
-      run: |
-        dvc pull  # Pulls the tracked data    
+    # - name: Pull DVC-Tracked Data
+    #   run: |
+    #     dvc pull  # Pulls the tracked data    
 
     - name: Run main file
       run: |
         dvc repro     
 
-    # - name: Create CML report
-    # env:
-    #   REPO_TOKEN: ${{ secrets.Harsh_Chitaliya }
-    # run: |
-
-    #   echo "#first line of our report" >> report.md
-    #   echo "## model" >> report.md
-    #   echo '![](./models/model.joblib "model" )' >> report.md
-    #   echo "## model params" >> report.md
-    #   echo '![](./models/best_params.yaml "params")' >> report.md
-
-    #   cml comment create report.md
 
 
 
