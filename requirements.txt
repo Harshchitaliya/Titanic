@@ -6,12 +6,12 @@ scikit-learn
 pandas
 xgboost
 catboost
-dvc==latest
+dvc==3.36.1
 mlflow
 matplotlib
 seaborn
 numpy
-dvc-gdrive==latest
-cryptography==latest
+dvc-gdrive==3.0.0
+cryptography==41.0.7
 
 
