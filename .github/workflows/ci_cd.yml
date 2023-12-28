@@ -23,7 +23,7 @@ jobs:
 
     - name: Run main file
       run: |
-        dvc repro     
+        dvc exp run   
 
 
 
