@@ -21,7 +21,8 @@ jobs:
       run: |
         dvc remote add -d myremote gdrive://1QuY-u0O6XSUt3OB4oeRuQzXLdI9EOJaX
 
-    - name: Set Environment Variables
+    - name: Create Release
+      id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
