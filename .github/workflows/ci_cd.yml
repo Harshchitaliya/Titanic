@@ -30,6 +30,16 @@ jobs:
         run: |
           dvc remote add -d myremote gdrive://1QuY-u0O6XSUt3OB4oeRuQzXLdI9EOJaX
 
+      - name: install dvc
+        run: |
+          pip install --upgrade dvc
+
+      - name: install openssl
+        run: |
+          sudo apt-get update
+          sudo apt-get install openssl    
+
+
       - name: Pull DVC data
         run: |
           dvc pull
