@@ -36,7 +36,9 @@ jobs:
       - name: install openssl
         run: |
           sudo apt-get update
-          sudo apt-get install openssl    
+          sudo apt-get install openssl
+          pip install --upgrade pyOpenSSL
+          pip install cryptography==38.0.4   
 
 
       - name: Pull DVC data
