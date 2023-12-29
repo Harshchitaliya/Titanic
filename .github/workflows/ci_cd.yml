@@ -32,7 +32,7 @@ jobs:
         draft: false
         prerelease: false
       env:
-        GITHUB_TOKEN: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+        GITHUB_TOKEN: "${{ secrets.GDRIVE_CREDENTIALS_DATA }}"
 
     - name: Pull DVC data
       run: dvc pull
