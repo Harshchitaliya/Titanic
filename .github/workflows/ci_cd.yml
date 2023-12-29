@@ -25,8 +25,8 @@ jobs:
       id: create_release
       uses: actions/create-release@v1
       with:
-        tag_name: v1.0.0  # Replace with the desired tag name
-        release_name: Release v1.0.0  # Optional, specify the release name
+        tag_name: v1.0.0
+        release_name: Release v1.0.0
         body: |
           Release notes for version 1.0.0
         draft: false
