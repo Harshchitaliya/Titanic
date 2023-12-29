@@ -10,25 +10,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3 
-    - uses: actions/setup-python@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Required to fetch all history for .env file
 
-    - name: Install dependencies
-      run: pip install -r requirements.txt  
+      - name: Set up Python
+        uses: actions/setup-python@v4
 
-    - name: Configure DVC remote storage
-      run: |
-        dvc remote add -d myremote gdrive://1QuY-u0O6XSUt3OB4oeRuQzXLdI9EOJaX
+      - name: Load environment variables
+        uses: actions/github-script@v6
+        id: load-env
+        with:
+          script: |
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            result = await github.actions.getEnvironments(github)
+            envs = result.data.environments
+            for (const env of envs) {
+              github.env(env.name, env.value)
+            }
 
-    - name: Set GDRIVE_CREDENTIALS_DATA as environment variable
-      run: |
-        echo ::set-env name=GDRIVE_CREDENTIALS_DATA::"${{ secrets.GDRIVE_CREDENTIALS_DATA }}"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      with:
+      - name: Configure DVC remote storage
+        run: |
+          dvc remote add -d myremote gdrive://1QuY-u0O6XSUt3OB4oeRuQzXLdI9EOJaX
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
           tag_name: v1.0.0
           release_name: Release v1.0.0
           body: |
@@ -36,9 +49,8 @@ jobs:
           draft: false
           prerelease: false
 
+      - name: Pull DVC data
+        run: dvc pull
 
-    - name: Pull DVC data
-      run: dvc pull
-    
-    - name: Run your DVC pipeline
-      run: dvc repro
+      - name: Run your DVC pipeline
+        run: dvc repro
