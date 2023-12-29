@@ -21,18 +21,21 @@ jobs:
       run: |
         dvc remote add -d myremote gdrive://1QuY-u0O6XSUt3OB4oeRuQzXLdI9EOJaX
 
+    - name: Set GDRIVE_CREDENTIALS_DATA as environment variable
+      run: |
+        echo ::set-env name=GDRIVE_CREDENTIALS_DATA::"${{ secrets.GDRIVE_CREDENTIALS_DATA }}"
+
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       with:
-        tag_name: v1.0.0
-        release_name: Release v1.0.0
-        body: |
-          Release notes for version 1.0.0
-        draft: false
-        prerelease: false
-      env:
-        GITHUB_TOKEN: "${{ secrets.GDRIVE_CREDENTIALS_DATA }}"
+          tag_name: v1.0.0
+          release_name: Release v1.0.0
+          body: |
+            Release notes for version 1.0.0
+          draft: false
+          prerelease: false
+
 
     - name: Pull DVC data
       run: dvc pull
