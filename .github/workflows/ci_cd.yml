@@ -27,9 +27,7 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Configure DVC remote storage
-        run: |
-          dvc remote add -d myremote gdrive://1QuY-u0O6XSUt3OB4oeRuQzXLdI9EOJaX
+
 
       - name: install dvc
         run: |
@@ -50,5 +48,4 @@ jobs:
           dvc repro
 
         
-          
           
